@@ -5,14 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CVEditor"
         mc:Ignorable="d"
-        Title="Stópka Edytor" Height="450" Width="750" Icon="Text-Editor-128.ico" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Stópka Edytor" Height="450" Width="750" Icon="Text-Editor-128.ico" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded">
     <Grid Name="gridMain">
         <Grid.Background>
             <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Grid Name="gridIntro"></Grid>
-        <Grid Name="gridLoader"></Grid>
-        <Grid Name="gridDisclaimer"></Grid>
-        <Grid Name="gridPreview"></Grid>
+        <Grid Name="gridIntro" Visibility="Visible">
+            <Image HorizontalAlignment="Center" Height="70" Margin="0,100,0,0" VerticalAlignment="Top" Width="350" Source="Images/output-onlinepngtools.png"/>
+            <Image HorizontalAlignment="Left" Height="70" Margin="0,100,0,0" VerticalAlignment="Top" Width="70" Source="Images/Left-Footprint-256.png">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-30" />
+                </Image.RenderTransform>
+            </Image>
+            <Image HorizontalAlignment="Right" Height="70" Margin="0,100,0,0" VerticalAlignment="Top" Width="70" Source="Images/Right-Footprint-256.png">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="30" />
+                </Image.RenderTransform>
+            </Image>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="148,273,396,120" Width="200" Source="Images/rozpocznij.png">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-28.358"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="255,249,409,108" Width="80" Source="Images/arrow.png">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="13.801"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Button Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="Button_Click">
+                <StackPanel>
+                    <Image Source="Images/icons8-play-512.png" />
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Grid Name="gridLoader" Visibility="Hidden"></Grid>
+        <Grid Name="gridDisclaimer" Visibility="Hidden"></Grid>
+        <Grid Name="gridPreview" Visibility="Hidden"></Grid>
     </Grid>
 </Window>

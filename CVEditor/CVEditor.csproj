@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Stages.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +124,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Left-Footprint-256.png" />
+    <Resource Include="Images\output-onlinepngtools.png" />
+    <Resource Include="Images\Right-Footprint-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons8-play-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rozpocznij.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

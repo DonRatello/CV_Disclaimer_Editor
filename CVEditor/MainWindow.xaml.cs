@@ -24,5 +24,39 @@ namespace CVEditor
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetScreen(Stages.Intro);
+        }
+
+        private void SetScreen(Stages newScreen)
+        {
+            gridIntro.Visibility = Visibility.Hidden;
+            gridLoader.Visibility = Visibility.Hidden;
+            gridDisclaimer.Visibility = Visibility.Hidden;
+            gridPreview.Visibility = Visibility.Hidden;
+
+            switch (newScreen)
+            {
+                case Stages.Intro:
+                    gridIntro.Visibility = Visibility.Visible;
+                    break;
+                case Stages.Loader:
+                    gridLoader.Visibility = Visibility.Visible;
+                    break;
+                case Stages.Disclaimer:
+                    gridDisclaimer.Visibility = Visibility.Visible;
+                    break;
+                case Stages.Preview:
+                    gridPreview.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SetScreen(Stages.Loader);
+        }
     }
 }
