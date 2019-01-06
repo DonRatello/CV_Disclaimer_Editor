@@ -87,5 +87,16 @@ namespace CVEditor
             }
             
         }
+
+        private void btnShowPreview_Click(object sender, RoutedEventArgs e)
+        {
+            pdf.Disclaimer = "Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w przesłanym CV dla potrzeb niezbędnych w procesie rekrutacji, zgodnie z ustawą z dnia 29.08.1997 roku o ochronie danych osobowych (Dz. U. Nr. 133 Poz. 883)";
+            pdf.PosX = 100;
+            pdf.PosY = 100;
+            pdf.FontSize = 12;
+            pdf.FontName = "Arial.TTF";
+            pdf.AddDisclaimer();
+            System.Diagnostics.Process.Start(pdf.PreviewFileName);
+        }
     }
 }

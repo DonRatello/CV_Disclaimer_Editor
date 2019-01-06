@@ -48,7 +48,7 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Grid Name="gridLoader" Visibility="Visible">
+        <Grid Name="gridLoader" Visibility="Hidden">
             <Image HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="350" Source="Images/pick_pdf.png" />
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="255,249,409,108" Width="80" Source="Images/arrow.png">
                 <Image.RenderTransform>
@@ -76,7 +76,33 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Grid Name="gridDisclaimer" Visibility="Hidden"></Grid>
+        <Grid Name="gridDisclaimer" Visibility="Visible">
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="255,249,409,108" Width="80" Source="Images/arrow.png">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="13.801"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="171,258,423,135" Width="150" Source="Images/show_preview.png">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-28.358"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Button Name="btnShowPreview" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="btnShowPreview_Click">
+                <StackPanel>
+                    <Image Source="Images/Preview-256.png" />
+                </StackPanel>
+            </Button>
+        </Grid>
         <Grid Name="gridPreview" Visibility="Hidden"></Grid>
     </Grid>
 </Window>
