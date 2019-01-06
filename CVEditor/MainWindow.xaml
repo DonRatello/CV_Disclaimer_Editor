@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CVEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Icon="Text-Editor-128.ico">
-    <Grid>
-        
+        Title="Stópka Edytor" Height="450" Width="750" Icon="Text-Editor-128.ico" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Name="gridMain">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Name="gridIntro"></Grid>
+        <Grid Name="gridLoader"></Grid>
+        <Grid Name="gridDisclaimer"></Grid>
+        <Grid Name="gridPreview"></Grid>
     </Grid>
 </Window>
