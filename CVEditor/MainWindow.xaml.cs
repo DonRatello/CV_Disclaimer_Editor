@@ -20,6 +20,8 @@ namespace CVEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        Pdf pdf;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace CVEditor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            pdf = new Pdf();
             SetScreen(Stages.Intro);
         }
 
@@ -54,9 +57,35 @@ namespace CVEditor
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(Stages.Loader);
+        }
+
+        private void btnPickPdf_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog
+                {
+                    Multiselect = false,
+                    Filter = "PDFy (.pdf)|*.pdf"
+                };
+                bool? result = openFileDlg.ShowDialog();
+
+                if (result.HasValue && result.Value)
+                {
+                    pdf.FileName = openFileDlg.SafeFileName;
+                    pdf.FilePath = openFileDlg.FileName;
+                }
+
+                SetScreen(Stages.Disclaimer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

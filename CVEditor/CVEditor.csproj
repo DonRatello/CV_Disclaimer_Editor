@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pdf.cs" />
     <Compile Include="Stages.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +139,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pick_pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Folder_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\click_me.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
