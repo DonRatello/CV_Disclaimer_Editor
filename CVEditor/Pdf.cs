@@ -89,10 +89,13 @@ namespace CVEditor
         {
             try
             {
-                if (!Directory.Exists("Preview"))
+                if (Directory.Exists("Preview"))
                 {
-                    Directory.CreateDirectory("Preview");
+                    Directory.Delete("Preview", true);
+                    
                 }
+
+                Directory.CreateDirectory("Preview");
             }
             catch (Exception ex)
             {
