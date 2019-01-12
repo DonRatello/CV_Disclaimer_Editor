@@ -100,9 +100,11 @@ namespace CVEditor
                 Font font = new Font(baseFont, FontSize, Font.NORMAL, BaseColor.WHITE);
 
                 var lines = Disclaimer.Split(new[] { '\r', '\n' });
+                float previousLineY = PosY;
                 foreach(string line in lines)
                 {
-                    ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(line, font), PosX, PosY+5, 0);
+                    previousLineY -= LineHeight;
+                    ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(line, font), PosX, previousLineY, 0);
                 }
 
                 PdfContentByte pbunder = stamper.GetUnderContent(1);

@@ -113,6 +113,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Save-256.png" />
+    <Resource Include="Images\arrow_mirror.png" />
+    <Resource Include="Images\zapisz.png" />
+    <Resource Include="Images\linia.png" />
+    <Resource Include="Images\y.png" />
+    <Resource Include="Images\x.png" />
     <Resource Include="Images\rozmiar.png" />
     <Resource Include="Images\tekst.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
