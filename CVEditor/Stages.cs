@@ -11,6 +11,6 @@ namespace CVEditor
         Intro,
         Loader,
         Disclaimer,
-        Preview
+        Finish
     }
 }

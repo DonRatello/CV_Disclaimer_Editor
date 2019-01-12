@@ -85,6 +85,21 @@ namespace CVEditor
             }
         }
 
+        public Pdf()
+        {
+            try
+            {
+                if (!Directory.Exists("Preview"))
+                {
+                    Directory.CreateDirectory("Preview");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         public void AddDisclaimer()
         {
             try
@@ -92,7 +107,7 @@ namespace CVEditor
                 PdfReader reader = new PdfReader(FilePath);
                 reader.SelectPages("1");
                 PreviewFileName = $"{Guid.NewGuid()}.pdf";
-                PdfStamper stamper = new PdfStamper(reader, new FileStream(PreviewFileName, FileMode.Create));
+                PdfStamper stamper = new PdfStamper(reader, new FileStream(Path.Combine("Preview", PreviewFileName), FileMode.Create));
                 PdfContentByte pbover = stamper.GetOverContent(1);
 
                 string fontPath = Path.Combine("Fonts", FontName);

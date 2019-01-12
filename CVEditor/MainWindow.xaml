@@ -76,7 +76,7 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Grid Name="gridDisclaimer" Visibility="Visible">
+        <Grid Name="gridDisclaimer" Visibility="Hidden">
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="232,301,432,56" Width="80" Source="Images/arrow.png">
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -139,6 +139,6 @@
             <Image HorizontalAlignment="Left" Height="40" Margin="524,200,0,0" VerticalAlignment="Top" Source="Images/linia.png"/>
             <TextBox Name="txtLineHeight" HorizontalAlignment="Left" Height="23" Margin="600,209,0,0" TextAlignment="Center" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid Name="gridPreview" Visibility="Hidden"></Grid>
+        <Grid Name="gridFinish" Visibility="Visible"></Grid>
     </Grid>
 </Window>

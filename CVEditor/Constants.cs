@@ -8,6 +8,8 @@ namespace CVEditor
 {
     public abstract class Constants
     {
+        public const string AppName = "CV Disclaimer Editor";
+
         public abstract class RegistryKeys
         {
             public const string FontName = "FontName";

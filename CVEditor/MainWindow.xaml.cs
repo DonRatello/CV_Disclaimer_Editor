@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Globalization;
+using System.Windows;
+using System.IO;
+using Microsoft.Win32;
 
 namespace CVEditor
 {
@@ -33,11 +23,25 @@ namespace CVEditor
             pdf = new Pdf();
             SetScreen(Stages.Intro);
 
-            txtDisclaimer.Text = "Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w przesłanym CV dla potrzeb niezbędnych w procesie rekrutacji, zgodnie z ustawą z dnia 29.08.1997 roku o ochronie danych osobowych (Dz. U. Nr. 133 Poz. 883)";
-            sliderSize.Value = 12;
-            txtPosX.Text = 380.ToString();
-            txtPosY.Text = 60.ToString();
-            txtLineHeight.Text = 5.ToString();
+            RegistryHandler.CheckMainSettings();
+
+            try
+            {
+                txtDisclaimer.Text = RegistryHandler.ReadKey(Constants.RegistryKeys.Disclaimer);
+                sliderSize.Value = double.Parse(RegistryHandler.ReadKey(Constants.RegistryKeys.FontSize));
+                txtPosX.Text = RegistryHandler.ReadKey(Constants.RegistryKeys.PosX);
+                txtPosY.Text = RegistryHandler.ReadKey(Constants.RegistryKeys.PosY);
+                txtLineHeight.Text = RegistryHandler.ReadKey(Constants.RegistryKeys.LineHeight);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtDisclaimer.Text = string.Empty;
+                sliderSize.Value = 0;
+                txtPosX.Text = "0";
+                txtPosY.Text = "0";
+                txtLineHeight.Text = "0";
+            }
         }
 
         private void SetScreen(Stages newScreen)
@@ -45,7 +49,7 @@ namespace CVEditor
             gridIntro.Visibility = Visibility.Hidden;
             gridLoader.Visibility = Visibility.Hidden;
             gridDisclaimer.Visibility = Visibility.Hidden;
-            gridPreview.Visibility = Visibility.Hidden;
+            gridFinish.Visibility = Visibility.Hidden;
 
             switch (newScreen)
             {
@@ -58,8 +62,8 @@ namespace CVEditor
                 case Stages.Disclaimer:
                     gridDisclaimer.Visibility = Visibility.Visible;
                     break;
-                case Stages.Preview:
-                    gridPreview.Visibility = Visibility.Visible;
+                case Stages.Finish:
+                    gridFinish.Visibility = Visibility.Visible;
                     break;
             }
         }
@@ -73,7 +77,7 @@ namespace CVEditor
         {
             try
             {
-                Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog
+                var openFileDlg = new OpenFileDialog
                 {
                     Multiselect = false,
                     Filter = "PDFy (.pdf)|*.pdf"
@@ -104,9 +108,9 @@ namespace CVEditor
                 pdf.PosY = float.Parse(txtPosY.Text);
                 pdf.FontSize = (float)Math.Round(sliderSize.Value, 0);
                 pdf.LineHeight = int.Parse(txtLineHeight.Text);
-                pdf.FontName = "OpenSans-Regular.ttf";
+                pdf.FontName = RegistryHandler.ReadKey(Constants.RegistryKeys.FontName);
                 pdf.AddDisclaimer();
-                System.Diagnostics.Process.Start(pdf.PreviewFileName);
+                System.Diagnostics.Process.Start(Path.Combine("Preview", pdf.PreviewFileName));
             }
             catch (Exception ex)
             {
@@ -121,7 +125,27 @@ namespace CVEditor
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var saveFileDlg = new SaveFileDialog
+                {
+                    Filter = "PDFy (.pdf)|*.pdf"
+                };
+                bool? result = saveFileDlg.ShowDialog();
 
+                if (result.HasValue && result.Value)
+                {
+                    string sourceFileName = Path.Combine("Preview", pdf.PreviewFileName);
+                    string newFileName = saveFileDlg.FileName;
+                    File.Copy(sourceFileName, newFileName);
+                }
+
+                SetScreen(Stages.Finish);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
