@@ -94,7 +94,7 @@ namespace CVEditor
             pdf.PosX = 100;
             pdf.PosY = 100;
             pdf.FontSize = 12;
-            pdf.FontName = "Arial.TTF";
+            pdf.FontName = "OpenSans-Regular.ttf";
             pdf.AddDisclaimer();
             System.Diagnostics.Process.Start(pdf.PreviewFileName);
         }
