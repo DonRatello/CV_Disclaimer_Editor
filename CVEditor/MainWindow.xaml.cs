@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace CVEditor
 {
@@ -31,6 +32,11 @@ namespace CVEditor
         {
             pdf = new Pdf();
             SetScreen(Stages.Intro);
+
+            txtDisclaimer.Text = "Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w przesłanym CV dla potrzeb niezbędnych w procesie rekrutacji, zgodnie z ustawą z dnia 29.08.1997 roku o ochronie danych osobowych (Dz. U. Nr. 133 Poz. 883)";
+            sliderSize.Value = 12;
+            txtPosX.Text = 100.ToString();
+            txtPosY.Text = 100.ToString();
         }
 
         private void SetScreen(Stages newScreen)
@@ -90,13 +96,18 @@ namespace CVEditor
 
         private void btnShowPreview_Click(object sender, RoutedEventArgs e)
         {
-            pdf.Disclaimer = "Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w przesłanym CV dla potrzeb niezbędnych w procesie rekrutacji, zgodnie z ustawą z dnia 29.08.1997 roku o ochronie danych osobowych (Dz. U. Nr. 133 Poz. 883)";
-            pdf.PosX = 100;
-            pdf.PosY = 100;
-            pdf.FontSize = 12;
+            pdf.Disclaimer = txtDisclaimer.Text;
+            pdf.PosX = float.Parse(txtPosX.Text);
+            pdf.PosY = float.Parse(txtPosY.Text);
+            pdf.FontSize = (float)Math.Round(sliderSize.Value, 0);
             pdf.FontName = "OpenSans-Regular.ttf";
             pdf.AddDisclaimer();
             System.Diagnostics.Process.Start(pdf.PreviewFileName);
+        }
+
+        private void sliderSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            txtSize.Content = Math.Round(sliderSize.Value, 0).ToString(CultureInfo.InvariantCulture);
         }
     }
 }

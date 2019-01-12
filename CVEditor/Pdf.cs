@@ -3,19 +3,87 @@ using iTextSharp.text.pdf;
 using System;
 using System.IO;
 using System.Windows;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace CVEditor
 {
     public class Pdf
     {
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
-        public string PreviewFileName { get; set; }
-        public string FontName { get; set; }
-        public float FontSize { get; set; } 
-        public string Disclaimer { get; set; }
-        public float PosX { get; set; } 
-        public float PosY { get; set; }
+        string _fileName;
+        public string FileName { get=>_fileName; set { _fileName = value; } }
+
+        string _filePath;
+        public string FilePath { get => _filePath; set { _filePath = value; } }
+
+        string _previewFileName;
+        public string PreviewFileName { get => _previewFileName; set { _previewFileName = value; } }
+
+        string _fontName;
+        public string FontName
+        {
+            get => _fontName;
+            set
+            {
+                _fontName = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.FontName, _fontName);
+            }
+        }
+
+        float _fontSize;
+        public float FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                _fontSize = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.FontSize, _fontSize.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        string _disclaimer;
+        public string Disclaimer
+        {
+            get => _disclaimer;
+            set
+            {
+                _disclaimer = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.Disclaimer, _disclaimer);
+            }
+        }
+
+        float _posX;
+        public float PosX
+        {
+            get => _posX;
+            set
+            {
+                _posX = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.PosX, _posX.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        float _posY;
+        public float PosY
+        {
+            get => _posY;
+            set
+            {
+                _posY = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.PosY, _posY.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        int _lineHeight;
+        public int LineHeight
+        {
+            get => _lineHeight;
+            set
+            {
+                _lineHeight = value;
+                RegistryHandler.WriteKey(Constants.RegistryKeys.LineHeight, _lineHeight.ToString(CultureInfo.InvariantCulture));
+            }
+        }
 
         public void AddDisclaimer()
         {
@@ -31,7 +99,12 @@ namespace CVEditor
                 BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 Font font = new Font(baseFont, FontSize, Font.NORMAL, BaseColor.WHITE);
 
-                ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(Disclaimer, font), PosX, PosY, 0);
+                var lines = Disclaimer.Split(new[] { '\r', '\n' });
+                foreach(string line in lines)
+                {
+                    ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(line, font), PosX, PosY+5, 0);
+                }
+
                 PdfContentByte pbunder = stamper.GetUnderContent(1);
                 stamper.Close();
             }
