@@ -1,23 +1,18 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 using System;
+using System.Globalization;
 using System.IO;
 using System.Windows;
-using System.Globalization;
-using System.Collections.Generic;
 
 namespace CVEditor
 {
     public class Pdf
     {
-        string _fileName;
-        public string FileName { get=>_fileName; set { _fileName = value; } }
-
-        string _filePath;
-        public string FilePath { get => _filePath; set { _filePath = value; } }
-
-        string _previewFileName;
-        public string PreviewFileName { get => _previewFileName; set { _previewFileName = value; } }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public string PreviewFileName { get; set; }
 
         string _fontName;
         public string FontName
@@ -110,16 +105,15 @@ namespace CVEditor
                 PdfReader reader = new PdfReader(FilePath);
                 reader.SelectPages("1");
                 PreviewFileName = $"{Guid.NewGuid()}.pdf";
-                PdfStamper stamper = new PdfStamper(reader, new FileStream(Path.Combine("Preview", PreviewFileName), FileMode.Create));
+                var stamper = new PdfStamper(reader, new FileStream(Path.Combine("Preview", PreviewFileName), FileMode.Create));
                 PdfContentByte pbover = stamper.GetOverContent(1);
 
                 string fontPath = Path.Combine("Fonts", FontName);
                 BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 Font font = new Font(baseFont, FontSize, Font.NORMAL, BaseColor.WHITE);
 
-                var lines = Disclaimer.Split(new[] { '\r', '\n' });
                 float previousLineY = PosY;
-                foreach(string line in lines)
+                foreach(string line in Disclaimer.Split(new[] { '\r', '\n' }))
                 {
                     previousLineY -= LineHeight;
                     ColumnText.ShowTextAligned(pbover, Element.ALIGN_LEFT, new Phrase(line, font), PosX, previousLineY, 0);

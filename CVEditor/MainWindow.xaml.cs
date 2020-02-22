@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+
+using System;
 using System.Globalization;
-using System.Windows;
 using System.IO;
-using Microsoft.Win32;
+using System.Windows;
 
 namespace CVEditor
 {
@@ -68,12 +69,12 @@ namespace CVEditor
             }
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             SetScreen(Stages.Loader);
         }
 
-        private void btnPickPdf_Click(object sender, RoutedEventArgs e)
+        private void BtnPickPdf_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -99,7 +100,7 @@ namespace CVEditor
             
         }
 
-        private void btnShowPreview_Click(object sender, RoutedEventArgs e)
+        private void BtnShowPreview_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -118,12 +119,12 @@ namespace CVEditor
             }
         }
 
-        private void sliderSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void SliderSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             txtSize.Content = Math.Round(sliderSize.Value, 0).ToString(CultureInfo.InvariantCulture);
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {

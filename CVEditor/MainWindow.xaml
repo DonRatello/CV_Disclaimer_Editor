@@ -42,7 +42,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Name="btnStart" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="btnStart_Click">
+            <Button Name="btnStart" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="BtnStart_Click">
                 <StackPanel>
                     <Image Source="Images/icons8-play-512.png" />
                 </StackPanel>
@@ -70,7 +70,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Name="btnPickPdf" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="btnPickPdf_Click">
+            <Button Name="btnPickPdf" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0" Background="Transparent" Click="BtnPickPdf_Click">
                 <StackPanel>
                     <Image Source="Images/Folder_256.png" />
                 </StackPanel>
@@ -117,12 +117,12 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button Name="btnShowPreview" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,300,70,0" Background="Transparent" Click="btnShowPreview_Click">
+            <Button Name="btnShowPreview" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,300,70,0" Background="Transparent" Click="BtnShowPreview_Click">
                 <StackPanel>
                     <Image Source="Images/Preview-256.png" />
                 </StackPanel>
             </Button>
-            <Button Name="btnSave" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="70,300,0,0" Background="Transparent" Click="btnSave_Click">
+            <Button Name="btnSave" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="70,300,0,0" Background="Transparent" Click="BtnSave_Click">
                 <StackPanel>
                     <Image Source="Images/Save-256.png" />
                 </StackPanel>
@@ -130,7 +130,7 @@
             <Image HorizontalAlignment="Left" Height="58" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="Images/tekst.png"/>
             <TextBox Name="txtDisclaimer" HorizontalAlignment="Left" Height="109" Margin="115,10,0,0" AcceptsReturn="True" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="605"/>
             <Image HorizontalAlignment="Left" Height="40" Margin="10,140,0,0" VerticalAlignment="Top" Source="Images/rozmiar.png"/>
-            <Slider Name="sliderSize" HorizontalAlignment="Left" Margin="248,147,0,0" VerticalAlignment="Top" Width="472" Height="22" ValueChanged="sliderSize_ValueChanged" SmallChange="1" Maximum="80"/>
+            <Slider Name="sliderSize" HorizontalAlignment="Left" Margin="248,147,0,0" VerticalAlignment="Top" Width="472" Height="22" ValueChanged="SliderSize_ValueChanged" SmallChange="1" Maximum="80"/>
             <Label Name="txtSize" Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="248,170,0,0" VerticalAlignment="Top" Width="472" />
             <TextBox Name="txtPosX" HorizontalAlignment="Left" Height="23" Margin="68,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" />
             <TextBox Name="txtPosY" HorizontalAlignment="Left" Height="23" Margin="68,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>

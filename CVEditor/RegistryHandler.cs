@@ -1,10 +1,8 @@
 ﻿using Microsoft.Win32;
+
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
 
 namespace CVEditor
@@ -42,9 +40,8 @@ namespace CVEditor
         {
             try
             {
-                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                Assembly assembly = Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                string version = fvi.FileVersion;
 
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("Software", true);
 
@@ -55,10 +52,10 @@ namespace CVEditor
                     mainKey = key.OpenSubKey(Constants.AppName, true);
                 }
 
-                mainKey.SetValue("AppName", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-                mainKey.SetValue("AppVersion", version);
+                mainKey.SetValue("AppName", Assembly.GetExecutingAssembly().GetName().Name);
+                mainKey.SetValue("AppVersion", fvi.FileVersion);
                 mainKey.SetValue("StartTime", DateTime.Now.ToString());
-                mainKey.SetValue("Architecture", System.Environment.Is64BitOperatingSystem ? "x64" : "x86");
+                mainKey.SetValue("Architecture", Environment.Is64BitOperatingSystem ? "x64" : "x86");
             }
             catch (Exception ex)
             {
